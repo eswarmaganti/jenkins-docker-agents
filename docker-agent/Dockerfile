@@ -3,16 +3,16 @@ FROM ubuntu:22.04
 
 
 # update the package manager and install the dependencies
-RUN yes | sudo apt-get update
-RUN yes | sudo apt install git
-RUN yes | sudo apt install python3
-RUN yes | sudo apt install default-jdk
-RUN yes | sudo apt install default-jre
-RUN yes | sudo apt install openssh-server
+RUN yes | apt-get update
+RUN yes | apt install git
+RUN yes | apt install python3
+RUN yes | apt install default-jdk
+RUN yes | apt install default-jre
+RUN yes | apt install openssh-server
 
 # add a jenkins user with password
-RUN sudo adduser --quiet jenkins
-RUN sudo echo "jenkins:jenkins123" | chpasswd
+RUN adduser --quiet jenkins
+RUN echo "jenkins:jenkins123" | chpasswd
 RUN mkdir /home/jenkins/.m2
 
 # copy the public key of jenkins server
