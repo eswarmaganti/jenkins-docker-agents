@@ -16,10 +16,12 @@ RUN echo "jenkins:jenkins123" | chpasswd
 RUN mkdir /home/jenkins/.m2 && chown -R jenkins:jenkins /home/jenkins/.m2 
 
 
-RUN mkdir /home/jenkins/.ssh && chown -R jenkins:jenkins /home/jenkins/.ssh
+RUN mkdir /home/jenkins/.ssh && chown -R jenkins:jenkins /home/jenkins/.ssh && \
+    sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd && \
+    mkdir -p /var/run/sshd && \
 
-# copy the public key of jenkins server
-RUN echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+hOoZbvvZSI8FfF+JXrAgMmz2O7myFBnjIAxnJGQXu Jenkins" > /home/jenkins/.ssh/authorized_keys
+    # copy the public key of jenkins server
+    RUN echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+hOoZbvvZSI8FfF+JXrAgMmz2O7myFBnjIAxnJGQXu Jenkins" > /home/jenkins/.ssh/authorized_keys
 
 # exposing port 22 for ssh to container from jenkins server
 EXPOSE 22
