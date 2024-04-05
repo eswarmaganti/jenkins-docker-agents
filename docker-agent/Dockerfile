@@ -16,7 +16,7 @@ RUN echo "jenkins:jenkins123" | chpasswd
 RUN mkdir /home/jenkins/.m2
 
 # copy the public key of jenkins server
-RUN echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+hOoZbvvZSI8FfF+JXrAgMmz2O7myFBnjIAxnJGQXu Jenkins" > ~/.ssh/authorized_keys
+RUN echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+hOoZbvvZSI8FfF+JXrAgMmz2O7myFBnjIAxnJGQXu Jenkins" > /home/jenkins/.ssh/authorized_keys
 
 # add the permissions to the filesystem
 RUN chown -R jenkins:jenkins /home/jenkins/.m2 && chown -R jenkins:jenkins /home/jenkins/.ssh
