@@ -10,7 +10,7 @@ RUN yes | apt install default-jdk
 RUN yes | apt install default-jre
 RUN yes | apt install openssh-server && \
     sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd && \
-    mkdir -p /var/run/sshd && \
+    mkdir -p /var/run/sshd \
 
     # add a jenkins user with password
     RUN adduser --quiet jenkins
